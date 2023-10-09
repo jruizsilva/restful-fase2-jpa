@@ -10,16 +10,18 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "managers")
-public class Manager {
+@Table(name = "orders")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",
             nullable = false)
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String description;
+    private Double price;
 
-    @OneToOne(mappedBy = "manager")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "local_id",
+                referencedColumnName = "id")
     private Local local;
 }
