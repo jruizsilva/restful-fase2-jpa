@@ -1,13 +1,16 @@
 package springdatajpa.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
-@Table(name = "manager")
+@Table(name = "managers")
 public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,13 +1,16 @@
 package springdatajpa.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
-@Table(name = "local")
+@Table(name = "locals")
 public class Local {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +20,9 @@ public class Local {
     private String name;
     private String floor;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST},
+              fetch = FetchType.EAGER)
     @JoinColumn(name = "manager_id")
+    /*@ToString.Exclude*/
     private Manager manager;
 }
